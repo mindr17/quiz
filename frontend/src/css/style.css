@@ -55,12 +55,12 @@ button {
   background-color: #296C82;
   padding-top: 13px;
   padding-bottom: 13px;
-  margin: 0 auto;
 }
 
 .header__container {
   padding: 0 30px;
   max-width: 1140px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
