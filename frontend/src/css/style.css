@@ -42,6 +42,10 @@ body {
   color: #434343;
 }
 
+h1 {
+  text-transform: uppercase;
+}
+
 button {
   font: inherit;
   cursor: pointer;
