@@ -64,7 +64,7 @@ module.exports = {
     filename: "[name].bundle.js",
     assetModuleFilename: "img/[name][ext]",
     // assetModuleFilename: 'assets/[name][ext]',
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "../"),
     publicPath: "auto",
     clean: false,
   },
