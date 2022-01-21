@@ -171,8 +171,32 @@ const renderTheme = themes => {
 
 };
 
+const shuffle = array => {
+  const newArray = [...array]
+  for (let i = newArray.length - 1; i > 0; i -= 1) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+  }
+  return newArray;
+}
+
+const createKeyAnswers = data => {
+  const keys = [];
+
+  for (let i = 0; i < data.answers.length; i++) {
+    if (data.type === 'radio') {
+      keys.push([data.answers[i], !i])
+    } else {
+      keys.push([data.answers[i], i < data.correct]);
+    }
+  }
+
+  return shuffle(keys);
+}
+
 const createAnswer = data => {
   const type = data.type;
+  const answers = createKeyAnswers(data);
 
   return data.answers.map(item => {
     const label = document.createElement('label');
@@ -200,6 +224,7 @@ const renderQuiz = quiz => {
 
   main.append(questionBox);
 
+  let result = 0;
   let questionCount = 0;
 
   const showQuestion = () => {
@@ -241,7 +266,11 @@ const renderQuiz = quiz => {
       });
 
       if (ok) {
-        console.log(answer);
+        if (questionCount < quiz.list.length) {
+          showQuestion();
+        } else {
+          showResult();
+        }
       } else {
         form.classList.add('main__form-question_error');
         setTimeout(() => {
