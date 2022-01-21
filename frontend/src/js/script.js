@@ -243,7 +243,10 @@ const renderQuiz = quiz => {
       if (ok) {
         console.log(answer);
       } else {
-        console.error('не выбран ни один ответ');
+        form.classList.add('main__form-question_error');
+        setTimeout(() => {
+          form.classList.remove('main__form-question_error')
+        }, 1000)
       }
     });
   };
